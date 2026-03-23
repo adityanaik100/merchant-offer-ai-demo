@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Merchant Offer AI Demo</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background: #f7f9fc; color: #222; }
+        .container { max-width: 950px; margin: auto; }
+        .card {
+            background: white; padding: 24px; margin-bottom: 20px;
+            border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        h1, h2 { margin-top: 0; }
+        a.button {
+            display: inline-block; padding: 12px 18px; margin-right: 12px; margin-bottom: 12px;
+            text-decoration: none; background: #1f6feb; color: white; border-radius: 8px;
+        }
+        p { line-height: 1.6; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="card">
+        <h1>Merchant Offer AI Operations Demo</h1>
+        <p>
+            This prototype demonstrates AI-driven merchant offer operations using four capabilities:
+            Offer Setup with automatic incident creation, Incident Investigation, Incident Prioritization Intelligence,
+            and Proactive Defect Detection.
+        </p>
+        <a class="button" href="/ui/offer-setup">Offer Setup</a>
+        <a class="button" href="/ui/investigate-incident">Incident Investigation</a>
+        <a class="button" href="/ui/incident-operations">Incident Prioritization Dashboard</a>
+        <a class="button" href="/ui/proactive-detection">Proactive Defect Detection</a>
+    </div>
+
+    <div class="card">
+        <h2>Demo Flow</h2>
+        <p>1. Create an offer with realistic operational conditions.</p>
+        <p>2. The backend automatically creates an operational incident.</p>
+        <p>3. Investigate the incident using the LLM-powered investigation agent.</p>
+        <p>4. Review portfolio-level incident prioritization and recommended actions.</p>
+    </div>
+</div>
+</body>
+</html>

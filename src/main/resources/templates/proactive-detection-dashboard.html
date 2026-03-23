@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Proactive Defect Detection Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background: #f7f9fc; color: #222; }
+        .container { max-width: 1100px; margin: auto; }
+        .card {
+            background: white; padding: 24px; margin-bottom: 20px;
+            border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        ul { padding-left: 20px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="card">
+        <h1>Proactive Defect Detection Dashboard</h1>
+        <p th:text="${result != null && result.executiveSummary != null ? result.executiveSummary : 'No summary available.'}"></p>
+    </div>
+
+    <div class="card">
+        <h2>Detected Issues</h2>
+        <div th:if="${result != null && result.detectedIssues != null}">
+            <div th:each="issue : ${result.detectedIssues}" style="margin-bottom: 18px;">
+                <p><strong>Offer ID:</strong> <span th:text="${issue.offerId != null ? issue.offerId : 'N/A'}"></span></p>
+                <p><strong>Issue Summary:</strong> <span th:text="${issue.issueSummary != null ? issue.issueSummary : 'N/A'}"></span></p>
+                <p><strong>Recommended Action:</strong> <span th:text="${issue.recommendedAction != null ? issue.recommendedAction : 'N/A'}"></span></p>
+                <p><strong>Priority Suggestion:</strong> <span th:text="${issue.prioritySuggestion != null ? issue.prioritySuggestion : 'N/A'}"></span></p>
+                <p><strong>Confidence:</strong> <span th:text="${issue.confidence != null ? issue.confidence : 'N/A'}"></span></p>
+                <p><strong>Incident Already Exists:</strong> <span th:text="${issue.incidentAlreadyExists}"></span></p>
+                <hr/>
+            </div>
+        </div>
+        <p th:if="${result == null || result.detectedIssues == null}">No detected issues available.</p>
+    </div>
+
+    <div class="card">
+        <h2>Observability Gaps</h2>
+        <ul th:if="${result != null && result.observabilityGaps != null}">
+            <li th:each="gap : ${result.observabilityGaps}" th:text="${gap}"></li>
+        </ul>
+        <p th:if="${result == null || result.observabilityGaps == null}">No observability gaps available.</p>
+    </div>
+
+    <div class="card">
+        <h2>Recommended Actions</h2>
+        <ul th:if="${result != null && result.recommendedActions != null}">
+            <li th:each="action : ${result.recommendedActions}" th:text="${action}"></li>
+        </ul>
+        <p th:if="${result == null || result.recommendedActions == null}">No actions available.</p>
+    </div>
+
+    <div class="card">
+        <h2>Evidence</h2>
+        <div>
+            <h3>Offers Used</h3>
+            <ul th:if="${result != null && result.evidence != null && result.evidence.offersUsed != null}">
+                <li th:each="item : ${result.evidence.offersUsed}" th:text="${item}"></li>
+            </ul>
+            <p th:if="${result == null || result.evidence == null || result.evidence.offersUsed == null}">
+                No evidence available.
+            </p>
+
+            <h3>Logs Used</h3>
+            <ul th:if="${result != null && result.evidence != null && result.evidence.logsUsed != null}">
+                <li th:each="item : ${result.evidence.logsUsed}" th:text="${item}"></li>
+            </ul>
+            <p th:if="${result == null || result.evidence == null || result.evidence.logsUsed == null}">
+                No evidence available.
+            </p>
+
+            <h3>Incidents Checked</h3>
+            <ul th:if="${result != null && result.evidence != null && result.evidence.incidentsChecked != null}">
+                <li th:each="item : ${result.evidence.incidentsChecked}" th:text="${item}"></li>
+            </ul>
+            <p th:if="${result == null || result.evidence == null || result.evidence.incidentsChecked == null}">
+                No evidence available.
+            </p>
+
+            <h3>Rules Applied</h3>
+            <ul th:if="${result != null && result.evidence != null && result.evidence.rulesApplied != null}">
+                <li th:each="item : ${result.evidence.rulesApplied}" th:text="${item}"></li>
+            </ul>
+            <p th:if="${result == null || result.evidence == null || result.evidence.rulesApplied == null}">
+                No evidence available.
+            </p>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="/">Home</a>
+    </div>
+</div>
+</body>
+</html>

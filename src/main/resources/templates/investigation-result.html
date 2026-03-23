@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Incident Investigation Result</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; background: #f7f9fc; color: #222; }
+    .container { max-width: 1100px; margin: auto; }
+    .card {
+      background: white; padding: 24px; margin-bottom: 20px;
+      border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+    h1, h2, h3 { margin-top: 0; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    ul { padding-left: 20px; }
+    .tag {
+      display: inline-block; background: #eef4ff; color: #1f4fa3;
+      padding: 6px 10px; border-radius: 999px; margin-right: 8px;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="card">
+    <h1>Incident Investigation Agent Output</h1>
+    <p><strong>Incident ID:</strong> <span th:text="${incidentId != null ? incidentId : 'N/A'}"></span></p>
+    <p><strong>Offer ID:</strong> <span th:text="${context != null && context.offer != null && context.offer.offerId != null ? context.offer.offerId : 'N/A'}"></span></p>
+    <span class="tag"
+          th:text="${result != null && result.priorityRecommendation != null ? result.priorityRecommendation : 'N/A'}"></span>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <h2>Issue</h2>
+      <p th:text="${result != null && result.issue != null ? result.issue : 'N/A'}"></p>
+    </div>
+
+    <div class="card">
+      <h2>Root Cause</h2>
+      <p th:text="${result != null && result.rootCause != null ? result.rootCause : 'N/A'}"></p>
+    </div>
+
+    <div class="card">
+      <h2>Resolution</h2>
+      <p th:text="${result != null && result.resolution != null ? result.resolution : 'N/A'}"></p>
+    </div>
+
+    <div class="card">
+      <h2>RCA</h2>
+      <p th:text="${result != null && result.rca != null ? result.rca : 'N/A'}"></p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Defect Recommendation</h2>
+    <p th:text="${result != null && result.defectRecommendation != null ? result.defectRecommendation : 'N/A'}"></p>
+  </div>
+
+  <div class="card">
+    <h2>Next Steps</h2>
+    <ul th:if="${result != null && result.nextSteps != null}">
+      <li th:each="step : ${result.nextSteps}" th:text="${step}"></li>
+    </ul>
+    <p th:if="${result == null || result.nextSteps == null}">No next steps available.</p>
+  </div>
+
+  <div class="card">
+    <h2>Evidence</h2>
+    <div class="grid">
+      <div>
+        <h3>Offer Fields Used</h3>
+        <ul th:if="${result != null && result.evidence != null && result.evidence.offerFieldsUsed != null}">
+          <li th:each="item : ${result.evidence.offerFieldsUsed}" th:text="${item}"></li>
+        </ul>
+        <p th:if="${result == null || result.evidence == null || result.evidence.offerFieldsUsed == null}">
+          No evidence available.
+        </p>
+      </div>
+
+      <div>
+        <h3>Log Lines Used</h3>
+        <ul th:if="${result != null && result.evidence != null && result.evidence.logLinesUsed != null}">
+          <li th:each="item : ${result.evidence.logLinesUsed}" th:text="${item}"></li>
+        </ul>
+        <p th:if="${result == null || result.evidence == null || result.evidence.logLinesUsed == null}">
+          No evidence available.
+        </p>
+      </div>
+
+      <div>
+        <h3>Rules Applied</h3>
+        <ul th:if="${result != null && result.evidence != null && result.evidence.rulesApplied != null}">
+          <li th:each="item : ${result.evidence.rulesApplied}" th:text="${item}"></li>
+        </ul>
+        <p th:if="${result == null || result.evidence == null || result.evidence.rulesApplied == null}">
+          No evidence available.
+        </p>
+      </div>
+
+      <div>
+        <h3>Incident Signals Used</h3>
+        <ul th:if="${result != null && result.evidence != null && result.evidence.incidentSignalsUsed != null}">
+          <li th:each="item : ${result.evidence.incidentSignalsUsed}" th:text="${item}"></li>
+        </ul>
+        <p th:if="${result == null || result.evidence == null || result.evidence.incidentSignalsUsed == null}">
+          No evidence available.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Raw Context Summary</h2>
+    <p><strong>Merchant:</strong> <span th:text="${context != null && context.offer != null && context.offer.merchantName != null ? context.offer.merchantName : 'N/A'}"></span></p>
+    <p><strong>Status:</strong> <span th:text="${context != null && context.offer != null && context.offer.status != null ? context.offer.status : 'N/A'}"></span></p>
+    <p><strong>Campaign:</strong> <span th:text="${context != null && context.campaign != null && context.campaign.campaignName != null ? context.campaign.campaignName : 'N/A'}"></span></p>
+    <p><strong>Incident Count:</strong> <span th:text="${context != null && context.incidents != null ? #lists.size(context.incidents) : 0}"></span></p>
+    <p><strong>Log Count:</strong> <span th:text="${context != null && context.logs != null ? #lists.size(context.logs) : 0}"></span></p>
+  </div>
+
+  <div class="card">
+    <a href="/ui/investigate-incident">Investigate Another Incident</a> |
+    <a href="/ui/offer-setup">Create New Offer</a> |
+    <a href="/">Home</a>
+  </div>
+</div>
+</body>
+</html>

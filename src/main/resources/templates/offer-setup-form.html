@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Offer Setup</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background: #f7f9fc; }
+        .container { max-width: 1000px; margin: auto; }
+        .card {
+            background: white; padding: 24px; border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        label { font-weight: bold; display: block; margin-bottom: 6px; }
+        input, select {
+            width: 100%; padding: 10px; border: 1px solid #ccc;
+            border-radius: 8px; margin-bottom: 14px;
+        }
+        button {
+            padding: 12px 18px; background: #1f6feb; color: white;
+            border: none; border-radius: 8px; cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="card">
+        <h1>Offer Setup</h1>
+        <form th:action="@{/ui/offer-setup}" th:object="${scenarioRequest}" method="post">
+            <div class="grid">
+                <div>
+                    <label>Partner Name</label>
+                    <input type="text" th:field="*{partnerName}" />
+
+                    <label>Merchant Name</label>
+                    <input type="text" th:field="*{merchantName}" />
+
+                    <label>Offer Type</label>
+                    <select th:field="*{offerType}">
+                        <option value="PARTNER_FUNDED">PARTNER_FUNDED</option>
+                        <option value="CARD_LINKED">CARD_LINKED</option>
+                        <option value="MERCHANT_FUNDED">MERCHANT_FUNDED</option>
+                        <option value="AMEX_INTERNAL">AMEX_INTERNAL</option>
+                    </select>
+
+                    <label>Card Type</label>
+                    <input type="text" th:field="*{cardType}" value="BUSINESS"/>
+
+                    <label>Min Spend</label>
+                    <input type="number" step="0.01" th:field="*{minSpend}" />
+
+                    <label>Cashback Amount</label>
+                    <input type="number" step="0.01" th:field="*{cashbackAmount}" />
+
+                    <label>Targeting Segment</label>
+                    <input type="text" th:field="*{targetingSegment}" />
+                </div>
+
+                <div>
+                    <label>Current Status</label>
+                    <select th:field="*{currentStatus}">
+                        <option value="DRAFT">DRAFT</option>
+                        <option value="ONBOARDING_IN_PROGRESS">ONBOARDING_IN_PROGRESS</option>
+                        <option value="CONFIRMATION_IN_PROGRESS">CONFIRMATION_IN_PROGRESS</option>
+                        <option value="SUBMITTED">SUBMITTED</option>
+                        <option value="ACTIVE">ACTIVE</option>
+                        <option value="FAILED">FAILED</option>
+                    </select>
+
+                    <label>Expected Next System</label>
+                    <input type="text" th:field="*{expectedNextSystem}" />
+
+                    <label>User Submission Blocked</label>
+                    <select th:field="*{userSubmissionBlocked}">
+                        <option value="true">true</option>
+                        <option value="false">false</option>
+                    </select>
+
+                    <label>Logs Mode</label>
+                    <select th:field="*{logsMode}">
+                        <option value="DETAILED">DETAILED</option>
+                        <option value="LIMITED">LIMITED</option>
+                    </select>
+
+                    <label>Downstream Behavior</label>
+                    <select th:field="*{downstreamBehavior}">
+                        <option value="SUCCESS">SUCCESS</option>
+                        <option value="FAILED_VALIDATION">FAILED_VALIDATION</option>
+                        <option value="NOT_TRIGGERED">NOT_TRIGGERED</option>
+                    </select>
+
+                    <label>Targeting Behavior</label>
+                    <select th:field="*{targetingBehavior}">
+                        <option value="CORRECT">CORRECT</option>
+                        <option value="INCORRECT_MAPPING">INCORRECT_MAPPING</option>
+                        <option value="MISSING_ATTRIBUTE">MISSING_ATTRIBUTE</option>
+                    </select>
+
+                    <label>Start In Days</label>
+                    <input type="number" th:field="*{startInDays}" />
+
+                    <label>End In Days</label>
+                    <input type="number" th:field="*{endInDays}" />
+                </div>
+            </div>
+
+            <button type="submit">Create Offer</button>
+            <a href="/" style="margin-left: 16px;">Back</a>
+        </form>
+    </div>
+</div>
+</body>
+</html>
