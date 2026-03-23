@@ -18,7 +18,7 @@ public class OfferRepository {
     public void init() {
         offers.put("OF1001", new Offer(
                 "OF1001",
-                "Rakuten",
+                "PARTNER_2",
                 "Starbucks",
                 "CMP1001",
                 OfferType.PARTNER_FUNDED,
@@ -38,7 +38,7 @@ public class OfferRepository {
 
         offers.put("OF1002", new Offer(
                 "OF1002",
-                "CDLX",
+                "PARTNER_1",
                 "Long Merchant Name Beyond Fifty Characters Demo Store ABC",
                 "CMP1002",
                 OfferType.PARTNER_FUNDED,
@@ -58,7 +58,7 @@ public class OfferRepository {
 
         offers.put("OF1003", new Offer(
                 "OF1003",
-                "Krowd",
+                "PARTNER_3",
                 "Best Buy",
                 "CMP1003",
                 OfferType.CARD_LINKED,
@@ -78,10 +78,10 @@ public class OfferRepository {
 
         offers.put("OF1004", new Offer(
                 "OF1004",
-                "AMEX_INTERNAL",
+                "INTERNAL",
                 "Hilton",
                 "CMP1004",
-                OfferType.AMEX_INTERNAL,
+                OfferType.INTERNAL,
                 OfferStatus.SUBMITTED,
                 "CONSUMER",
                 200.0,

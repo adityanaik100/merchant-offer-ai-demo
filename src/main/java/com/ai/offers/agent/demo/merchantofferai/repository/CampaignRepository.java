@@ -17,7 +17,7 @@ public class CampaignRepository {
         campaigns.put("CMP1001", new Campaign(
                 "CMP1001",
                 "Starbucks Business Boost",
-                "Rakuten",
+                "PARTNER_2",
                 LocalDateTime.now().minusDays(3),
                 LocalDateTime.now().plusDays(2),
                 LocalDateTime.now().plusDays(30),
@@ -27,7 +27,7 @@ public class CampaignRepository {
         campaigns.put("CMP1002", new Campaign(
                 "CMP1002",
                 "Merchant Name Constraint Campaign",
-                "CDLX",
+                "PARTNER_1",
                 LocalDateTime.now().minusDays(5),
                 LocalDateTime.now().plusDays(1),
                 LocalDateTime.now().plusDays(20),
@@ -37,7 +37,7 @@ public class CampaignRepository {
         campaigns.put("CMP1003", new Campaign(
                 "CMP1003",
                 "Business Card Exclusive Electronics",
-                "Krowd",
+                "PARTNER_3",
                 LocalDateTime.now().minusDays(10),
                 LocalDateTime.now().minusDays(1),
                 LocalDateTime.now().plusDays(25),
@@ -47,7 +47,7 @@ public class CampaignRepository {
         campaigns.put("CMP1004", new Campaign(
                 "CMP1004",
                 "Hilton Premium Travel",
-                "AMEX_INTERNAL",
+                "INTERNAL",
                 LocalDateTime.now().minusDays(15),
                 LocalDateTime.now().plusDays(10),
                 LocalDateTime.now().plusDays(60),
